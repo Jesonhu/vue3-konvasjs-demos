@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 const routeDefines = [
-    { path: "/basic/hello", title: "快速开始", component: "@/demos/basic/hello" }
+    { path: "/basic/hello", title: "快速开始", component: () => import("@/demos/basic/hello.vue") }
 ]
 
 function generateRoutes(routeList: any[]) {
@@ -14,7 +14,7 @@ function generateRoutes(routeList: any[]) {
         routes.push({
             path: i.path,
             name: i.path,
-            component: () => import(i.component)
+            component: i.component
         })
     })
     return routes;
